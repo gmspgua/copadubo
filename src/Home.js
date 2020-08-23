@@ -5,7 +5,7 @@ export default class Home extends Component {
         return (
           <div>
               <div className="header">
-                <h1>Bem Vindo ao mundo Devops!</h1>
+                <h1>Copadubo - Paranaguá</h1>
               </div>
               <div className="content" id="content">
               </div>
