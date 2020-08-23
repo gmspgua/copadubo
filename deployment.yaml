@@ -6,11 +6,6 @@ spec:
   selector:
     matchLabels:
       run: copadubo
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 25%
-      maxSurge: 25%
   replicas: 1
   template:
     metadata:
