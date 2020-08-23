@@ -7,10 +7,7 @@ spec:
     matchLabels:
       run: copadubo
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+    type: Recreate
   replicas: 2
   template:
     metadata:
