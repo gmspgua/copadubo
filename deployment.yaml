@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
         - name: copadubo-view
-          image: 130593/copadubo-view:${IMAGE_VERSION}
+          image: 130593/copadubo-view:latest
+          imagePullPolicy: "Always"
           ports:
             - containerPort: 3000
               protocol: TCP
