@@ -6,7 +6,12 @@ spec:
   selector:
     matchLabels:
       run: copadubo
-  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  replicas: 2
   template:
     metadata:
       labels:
@@ -15,7 +20,7 @@ spec:
       containers:
         - name: copadubo-view
           image: 130593/copadubo-view:latest
-          imagePullPolicy: Always
+          imagePullPolicy: "Always"
           ports:
             - containerPort: 3000
               protocol: TCP
