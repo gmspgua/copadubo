@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: copadubo-view
-          image: 130593/copadubo-view:${IMAGE_VERSION}
+          image: 130593/copadubo-view:c2611c2
           ports:
             - containerPort: 3000
               protocol: TCP
