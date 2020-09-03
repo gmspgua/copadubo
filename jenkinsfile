@@ -1,0 +1,34 @@
+node {
+
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/gmspgua/copadubo.git'
+     
+   }
+   stage('Docker Build') { // for display purposes
+      // Get some code from a GitHub repository
+      script {
+        IMAGE_VERSION = sh(returnStdout: true, script: "git rev-parse --short HEAD")
+        env.IMAGE_VERSION = IMAGE_VERSION
+    }
+      sh "echo $IMAGE_VERSION"
+      sh "sudo docker build -t 130593/copadubo-view .; docker tag 130593/copadubo-view:latest 130593/copadubo-view:${IMAGE_VERSION} "
+        
+      } 
+      
+
+   stage('Docker Push') { // for display purposes
+      // Get some code from a GitHub repository
+      sh "sudo docker push 130593/copadubo-view:${IMAGE_VERSION} "
+       
+   }
+   stage('Deploy Kubernetes'){
+       script {
+            withEnv(["IMAGE_VERSION=${IMAGE_VERSION}"]) {
+            echo "IMAGE_VERSION = ${env.IMAGE_VERSION}" // prints: FOO = newbar
+          }
+    }
+     sh "kubectl apply -f deployment.yaml"  
+   }
+
+}
